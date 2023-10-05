@@ -1,7 +1,6 @@
 'use strict';
 
 import axios from 'axios';
-import SlimSelect from 'slim-select';
 import { fetchBreeds, fetchCatByBreed } from './cat-api';
 
 axios.defaults.headers.common['x-api-key'] =
@@ -11,10 +10,6 @@ const selectElem = document.querySelector('.breed-select');
 const divElem = document.querySelector('.cat-info');
 const loaderElem = document.querySelector('.loader');
 const errorElem = document.querySelector('.error');
-
-// new SlimSelect({
-//   select: selectElem,
-// })
 
 selectElem.addEventListener('change', event => {
   loaderElem.style.display = 'block';
@@ -28,13 +23,15 @@ selectElem.addEventListener('change', event => {
       console.log(data);
       const markup = `
       <img src="${data.url}" width="400" height="400">
-      <h1>${data.breeds[0].name}</h1>
-      <p>${data.breeds[0].description}</p>
-      <h2>Temperament: ${data.breeds[0].temperament}</h2>
+      <div class="text-container">
+        <h1>${data.breeds[0].name}</h1>
+        <p>${data.breeds[0].description}</p>
+        <h2>Temperament: ${data.breeds[0].temperament}</h2>
+      </div>
     `;
 
       divElem.innerHTML = markup;
-      divElem.style.display = 'block';
+      divElem.style.display = 'flex';
 
       loaderElem.style.display = 'none';
     })
