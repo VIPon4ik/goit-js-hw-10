@@ -1,0 +1,8 @@
+.breed-select {
+    margin-bottom: 10px;
+}
+
+.cat-info {
+    display: flex;
+    gap: 10px;
+}
