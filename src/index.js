@@ -19,7 +19,6 @@ selectElem.addEventListener('change', event => {
 
   fetchCatByBreed(breedId)
     .then(data => {
-      console.log(data);
       const markup = `
       <img src="${data.url}" width="400" height="400">
       <div class="text-container">
