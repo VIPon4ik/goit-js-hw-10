@@ -2,6 +2,7 @@
 
 import axios from 'axios';
 import { fetchBreeds, fetchCatByBreed } from './cat-api';
+import Notiflix from 'notiflix';
 
 axios.defaults.headers.common['x-api-key'] =
   'live_gTLd4V1rphNmzg6NSarYRHtsGtJhUWrsvjr7FYYDsq3fhbaLaBtqt7cy9ByOvIDP';
@@ -9,11 +10,9 @@ axios.defaults.headers.common['x-api-key'] =
 const selectElem = document.querySelector('.breed-select');
 const divElem = document.querySelector('.cat-info');
 const loaderElem = document.querySelector('.loader');
-const errorElem = document.querySelector('.error');
 
 selectElem.addEventListener('change', event => {
   loaderElem.style.display = 'block';
-  errorElem.style.display = 'none';
   divElem.style.display = 'none';
 
   const breedId = event.currentTarget.value;
@@ -37,7 +36,7 @@ selectElem.addEventListener('change', event => {
     })
     .catch(error => {
       loaderElem.style.display = 'none';
-      errorElem.style.display = 'block';
+      Notiflix.Notify.failure('Oops! Something went wrong! Try reloading the page!');
     });
 });
 
@@ -53,5 +52,5 @@ fetchBreeds()
   })
   .catch(error => {
     loaderElem.style.display = 'none';
-    errorElem.style.display = 'block';
+    Notiflix.Notify.failure('Oops! Something went wrong! Try reloading the page!');
   });
